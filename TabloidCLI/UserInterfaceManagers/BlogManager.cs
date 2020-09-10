@@ -4,7 +4,7 @@ using TabloidCLI.Models;
 
 namespace TabloidCLI.UserInterfaceManagers
 {
-    public class BlogManager : IUserInterfaceManager
+    public class BlogManager
     {
 
         public BlogManager(IUserInterfaceManager parentUI, string connectionString)
