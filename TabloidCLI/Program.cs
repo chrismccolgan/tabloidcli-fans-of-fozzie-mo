@@ -3,14 +3,6 @@ using System;
 
 namespace TabloidCLI
 {
-    //Hello????? Can you all see this? Yesyes
-    //that's cool
-    //yasssssdfsddsfdsdsddfsddsdfssd
-    
-
-    //AHHHH WAKA WAKA
-    //this is getting off to a good start
-    //
     class Program
     {
         static void Main(string[] args)

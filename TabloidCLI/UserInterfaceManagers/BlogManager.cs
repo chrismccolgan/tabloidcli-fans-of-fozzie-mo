@@ -8,5 +8,8 @@ namespace TabloidCLI.UserInterfaceManagers
     {
 
         public BlogManager(IUserInterfaceManager parentUI, string connectionString)
+        {
+
+        }
     }
 }
