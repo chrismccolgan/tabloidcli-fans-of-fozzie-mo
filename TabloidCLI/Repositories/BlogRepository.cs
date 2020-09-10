@@ -143,7 +143,7 @@ namespace TabloidCLI
                 }
             }
         }
-
+        //Tags to be added later
         //public void InsertTag(Blog blog, Tag tag)
         //{
         //    using (SqlConnection conn = Connection)
@@ -176,6 +176,6 @@ namespace TabloidCLI
         //            cmd.ExecuteNonQuery();
         //        }
         //    }
-        }
+        //}
     }
 }
