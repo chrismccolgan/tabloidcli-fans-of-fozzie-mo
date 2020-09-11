@@ -108,14 +108,25 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine("New Blog");
             //instanstiate new blog class;
             Blog blog = new Blog();
-
+            
             Console.Write("Title: ");
             blog.Title = Console.ReadLine();
 
             Console.Write("Url: ");
             blog.Url = Console.ReadLine();
 
+           while (blog.Title == "" || blog.Url == "")
+            {
+                Console.WriteLine("You cannot leave any entry blank");
+                Console.Write("Title: ");
+                blog.Title = Console.ReadLine();
+
+                Console.Write("Url: ");
+                blog.Url = Console.ReadLine();
+            }
+
             _blogRepository.Insert(blog);
+
         }
 
         private void Edit()
@@ -148,10 +159,12 @@ namespace TabloidCLI.UserInterfaceManagers
         private void Remove()
         {
             Blog blogToDelete = Choose("Which blog would you like to remove?");
-            if (blogToDelete != null)
-            {
-                _blogRepository.Delete(blogToDelete.Id);
-            }
+           
+                if (blogToDelete != null)
+                {
+                    _blogRepository.Delete(blogToDelete.Id);
+                }
+            
         }
     }
 }
