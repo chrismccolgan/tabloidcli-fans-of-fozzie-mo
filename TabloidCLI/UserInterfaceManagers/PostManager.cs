@@ -14,7 +14,7 @@ namespace TabloidCLI.UserInterfaceManagers
         public PostManager(IUserInterfaceManager parentUI, string connectionString)
         {
             _parentUI = parentUI;
-            _postRepository = new PostgRepository(connectionString);
+            _postRepository = new PostRepository(connectionString);
             _connectionString = connectionString;
         }
 
