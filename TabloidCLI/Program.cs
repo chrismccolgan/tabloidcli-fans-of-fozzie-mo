@@ -7,6 +7,7 @@ namespace TabloidCLI
     {
         static void Main(string[] args)
         {
+            
 
             Console.WriteLine(@"HI THERE!!! WAKA WAKA");
             Console.WriteLine(@"
@@ -18,6 +19,7 @@ namespace TabloidCLI
                                   .`---'.     --- I hope your experience is a pleasant one!
                                 .' ()o() `.
                                 :   ( \   : ");
+            Console.WriteLine("");
 
             Console.WriteLine("Welcome to Tabloid.ly by Team Fans of Fozzie. Waka waka!");
             // MainMenuManager implements the IUserInterfaceManager interface
