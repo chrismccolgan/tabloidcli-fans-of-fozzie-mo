@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using TabloidCLI.Models;
 using TabloidCLI.Repositories;
 
-/*
-  
- 
-TODO: InsertTag() and DeleteTag() IN PostRepository.cs
-
-
 namespace TabloidCLI.UserInterfaceManagers
 {
     internal class PostDetailManager : IUserInterfaceManager
@@ -128,5 +122,3 @@ namespace TabloidCLI.UserInterfaceManagers
         }
     }
 }
-
-*/
