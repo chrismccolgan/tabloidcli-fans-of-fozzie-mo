@@ -120,14 +120,8 @@ namespace TabloidCLI.UserInterfaceManagers
                 Console.WriteLine($" {i + 1}) {tag.Name}");
             }
             Console.Write("> ");
-            if (tags.Count == 0)
-            {
-                Console.WriteLine("No tags to remove");
-                Execute();
-
-            }
-            else 
-            {
+           
+            
                 string input = Console.ReadLine();
                 try
                 {
@@ -140,7 +134,7 @@ namespace TabloidCLI.UserInterfaceManagers
                     Console.WriteLine("Invalid Selection. Won't remove any tags.");
                 }
 
-            }
+            
 
            
         }
