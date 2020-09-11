@@ -14,6 +14,7 @@ namespace TabloidCLI.UserInterfaceManagers
         }
         public IUserInterfaceManager Execute()
         {
+            //clears console and begins menu
             Console.Clear();
             Console.WriteLine("");
             Console.WriteLine(@"
@@ -42,6 +43,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
             Console.Write("> ");
             string choice = Console.ReadLine();
+            //choice will be the background color
 
             switch (choice)
             {
@@ -107,6 +109,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
                     Console.Write("> ");
                     string choiceTwo = Console.ReadLine();
+                    //choiceTwo will be the foreground color
                     switch (choiceTwo)
                     {
                         case "1":
