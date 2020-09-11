@@ -120,16 +120,24 @@ namespace TabloidCLI.UserInterfaceManagers
             }
             Console.Write("> ");
 
-            string input = Console.ReadLine();
-            try
+            if (tags.Count == 0)
             {
-                int choice = int.Parse(input);
-                Tag tag = tags[choice - 1];
-                _authorRepository.DeleteTag(author.Id, tag.Id);
+                Console.WriteLine("No tags to remove");
+                Execute();
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine("Invalid Selection. Won't remove any tags.");
+                string input = Console.ReadLine();
+                try
+                {
+                    int choice = int.Parse(input);
+                    Tag tag = tags[choice - 1];
+                    _authorRepository.DeleteTag(author.Id, tag.Id);
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Invalid Selection. Won't remove any tags.");
+                }
             }
         }
     }
