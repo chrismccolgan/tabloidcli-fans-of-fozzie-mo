@@ -62,29 +62,23 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Add()
         {
-            Console.WriteLine("New Journal Entry");
+            
             Journal journal = new Journal();
 
-            Console.WriteLine("What's the title of this entry? ");
-            journal.Title = Console.ReadLine();
-
-            Console.Write("What do you have to say today? ");
-            journal.Content = Console.ReadLine();
-
-            journal.CreateDateTime = DateTime.Now;
-
-            while (journal.Title == "" || journal.Content == "")
+          do
             {
-                Console.WriteLine("--------------------");
-                Console.WriteLine("***You cannot leave any entry blank***");
-                Console.WriteLine("--------------------");
+                Console.WriteLine("-------------------");
+                Console.WriteLine("***New Journal Entry***");
                 Console.WriteLine("What's the title of this entry? ");
                 journal.Title = Console.ReadLine();
 
                 Console.Write("What do you have to say today? ");
                 journal.Content = Console.ReadLine();
             }
-
+            while (journal.Title == "" || journal.Content == "") ;
+            
+            journal.CreateDateTime = DateTime.Now;
+            
             _journalRepository.Insert(journal);
         }
 

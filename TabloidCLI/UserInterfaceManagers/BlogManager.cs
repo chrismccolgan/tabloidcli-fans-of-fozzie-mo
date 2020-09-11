@@ -105,29 +105,22 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Add()
         {
-            Console.WriteLine("New Blog");
+            
             //instanstiate new blog class;
             Blog blog = new Blog();
-            
-            Console.Write("Title: ");
-            blog.Title = Console.ReadLine();
 
-            Console.Write("Url: ");
-            blog.Url = Console.ReadLine();
-
-           while (blog.Title == "" || blog.Url == "")
+            do
             {
-                Console.WriteLine("--------------------");
-                Console.WriteLine("You cannot leave any entry blank");
-                Console.WriteLine("--------------------");
+                Console.WriteLine("New Blog");
                 Console.Write("Title: ");
                 blog.Title = Console.ReadLine();
 
                 Console.Write("Url: ");
                 blog.Url = Console.ReadLine();
             }
+            while (blog.Title == "" || blog.Url == "");
 
-            _blogRepository.Insert(blog);
+                _blogRepository.Insert(blog);
 
         }
 
