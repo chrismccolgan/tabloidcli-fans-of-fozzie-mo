@@ -18,10 +18,20 @@ namespace TabloidCLI
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"SELECT id,
-                                               Title,
-                                               URL
-                                          FROM Post";
+                    cmd.CommandText = @"SELECT p.Id AS PostId,
+                                               p.Title AS PostTitle,
+                                               p.URL AS PostURL,
+                                               p.PublishDateTime AS PublishDateTime,
+                                               p.AuthorId AS AuthorId,
+                                               p.BlogId AS BlogId,
+                                               a.FirstName AS FirstName,
+                                               a.LastName AS LastName,
+                                               a.Bio AS Bio,
+                                               b.Title AS BlogTitle,
+                                               b.Url AS BlogUrl
+                                         FROM Post p
+                                               JOIN Author a on p.AuthorId = a.id
+                                               JOIN Blog b on p.BlogId = b.id";
 
                     List<Post> posts = new List<Post>();
 
@@ -30,9 +40,24 @@ namespace TabloidCLI
                     {
                         Post post = new Post()
                         {
-                            Id = reader.GetInt32(reader.GetOrdinal("Id")),
-                            Title = reader.GetString(reader.GetOrdinal("Title")),
-                            Url = reader.GetString(reader.GetOrdinal("URL"))
+                            Id = reader.GetInt32(reader.GetOrdinal("PostId")),
+                            Title = reader.GetString(reader.GetOrdinal("PostTitle")),
+                            Url = reader.GetString(reader.GetOrdinal("PostUrl")),
+                            PublishDateTime = reader.GetDateTime(reader.GetOrdinal("PublishDateTime")),
+                            Author = new Author()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("AuthorId")),
+                                FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
+                                LastName = reader.GetString(reader.GetOrdinal("LastName")),
+                                Bio = reader.GetString(reader.GetOrdinal("Bio"))
+
+                            },
+                            Blog = new Blog()
+                            {
+                                Id = reader.GetInt32(reader.GetOrdinal("BlogId")),
+                                Title = reader.GetString(reader.GetOrdinal("BlogTitle")),
+                                Url = reader.GetString(reader.GetOrdinal("BlogUrl")),
+                            }
                         };
                         posts.Add(post);
                     }
@@ -174,7 +199,8 @@ namespace TabloidCLI
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
                     cmd.CommandText = @"INSERT INTO Post (Title, Url, PublishDateTime, AuthorId, BlogId )
-                                                     VALUES (@title, @url, @publishDatetime, @authorId, @blogId)";
+                                        OUTPUT INSERTED.Id       
+                                               VALUES (@title, @url, @publishDatetime, @authorId, @blogId)";
                     cmd.Parameters.AddWithValue("@title", post.Title);
                     cmd.Parameters.AddWithValue("@url", post.Url);
                     cmd.Parameters.AddWithValue("@publishDatetime", post.PublishDateTime);
