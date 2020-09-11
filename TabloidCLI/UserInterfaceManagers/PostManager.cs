@@ -170,33 +170,16 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.Write("URL: ");
             post.Url = Console.ReadLine();
 
-            Console.Write("DatePublished (Enter as YYYY-MM-DD): ");
+            Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
             string strdate = Console.ReadLine();
-            post.PublishDateTime = DateTime.Parse(strdate);
+            DateTime parsedDateTime;
+            while (DateTime.TryParse(strdate, out parsedDateTime) == false)
+            {
+                Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
+                strdate = Console.ReadLine();
+            }
+            post.PublishDateTime = parsedDateTime;
 
-            //DateTime? dateCheck = null;
-            //while (dateCheck != null)
-            //{
-            //    try
-            //    {
-            //        try
-            //        {
-            //            post.PublishDateTime = DateTime.Parse(strdate);
-            //        }
-            //        catch
-            //        {
-            //            Console.Write("Please use YYYY-MM-DD format: ");
-            //            throw new System.Exception();
-            //        }
-                    
-            //    }
-            //    catch
-            //    {
-            //        strdate = Console.ReadLine();
-            //    }
-                
-            //}
-            
             Author newauthor = ChooseAuthor();
             while (newauthor == null)
             {
