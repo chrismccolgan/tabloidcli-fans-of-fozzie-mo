@@ -204,15 +204,16 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 postToEdit.Url = url;
             }
-            Console.WriteLine("New date/time in this format(blank to leave unchanged): ");
+            Console.WriteLine("New date/time in this format: ");
             Console.Write("Enter a month: ");
             int month = int.Parse(Console.ReadLine());
             Console.Write("Enter a day: ");
             int day = int.Parse(Console.ReadLine());
             Console.Write("Enter a year: ");
             int year = int.Parse(Console.ReadLine());
-            DateTime dateTime = new DateTime(year, month, day, 00, 00, 00, 000);
-            if (dateTime != null)
+            DateTime dateTime = new DateTime(year, month, day);
+            string strDateTime = dateTime.ToString();
+            if (!string.IsNullOrWhiteSpace(strDateTime))
             {
                 postToEdit.PublishDateTime = dateTime;
             }
