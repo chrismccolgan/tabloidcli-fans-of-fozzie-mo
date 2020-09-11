@@ -16,7 +16,18 @@ namespace TabloidCLI.UserInterfaceManagers
         {
             Console.Clear();
             Console.WriteLine("");
-            Console.WriteLine("HI THERE! Let's pick a color! What's your favorite color? Just hit enter when you're done or if you like things just the way they are.");
+            Console.WriteLine(@"
+                                  _(___)_  
+                                 ()'   `() 
+                                 .' o o `. 
+                                 :  _O_  : 
+                                 `. \_/ .' -- What's your favorite color?
+                                  .`---'.   --- Just hit enter when you're all done trying everything out.
+                                .' ()o() `.
+                                :   ( \   : ");
+            Console.WriteLine("");
+            Console.WriteLine("");
+            
             Console.WriteLine(" 1) Red");
             Console.WriteLine(" 2) Green");
             Console.WriteLine(" 3) Yellow");
@@ -27,7 +38,7 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine(" 8) Dark Magenta");
             Console.WriteLine(" 9) All of them!");
             Console.WriteLine(" 0) Get me out of here");
-            Console.WriteLine(" 'Enter/Return' ) to continue.  I've got some more questions for you.  But don't worry, they're not hard.");
+            Console.WriteLine(" Remember, press 'Enter' or 'Return' to continue when you're done deciding.  I've got some more questions for you.  But don't worry, they're not hard.");
 
             Console.Write("> ");
             string choice = Console.ReadLine();
@@ -68,8 +79,18 @@ namespace TabloidCLI.UserInterfaceManagers
                 default:
                     Console.Clear();
                     Console.WriteLine("");
-                    Console.WriteLine("That's my favorite color too!");
-                    Console.WriteLine("What's your second favorite color?");
+
+                    Console.WriteLine(@"
+                                  _(___)_  
+                                 ()'   `() 
+                                 .' o o `. 
+                                 :  _O_  : 
+                                 `. \_/ .' -- That's my favorite color too!
+                                  .`---'.     ---What's your second favorite color?
+                                .' ()o() `.
+                                :   ( \   : ");
+                    Console.WriteLine("");
+          
                     Console.WriteLine("");
 
                     Console.WriteLine(" 1) Red");
