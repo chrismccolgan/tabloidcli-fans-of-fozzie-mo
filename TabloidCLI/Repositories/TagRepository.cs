@@ -222,7 +222,7 @@ namespace TabloidCLI
                                                LEFT JOIN Blog b on p.BlogId = b.Id
                                                LEFT JOIN PostTag pt on p.Id = pt.PostId
                                                LEFT JOIN Tag t on pt.TagId = t.Id
-                                               WHERE t.Name LIKE @name";
+                                         WHERE t.Name LIKE @name";
                     cmd.Parameters.AddWithValue("@name", tagName);
                     SqlDataReader reader = cmd.ExecuteReader();
 
