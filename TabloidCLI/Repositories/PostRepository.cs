@@ -115,7 +115,7 @@ namespace TabloidCLI
 
                                 Author = new Author()
                                 {
-                                    Id = reader.GetInt32(reader.GetOrdinal("authorId")),
+                                    Id = reader.GetInt32(reader.GetOrdinal("AuthorId")),
                                     FirstName = reader.GetString(reader.GetOrdinal("FirstName")),
                                     LastName = reader.GetString(reader.GetOrdinal("LastName")),
                                     Bio = reader.GetString(reader.GetOrdinal("Bio"))
@@ -128,18 +128,18 @@ namespace TabloidCLI
                                     Url = reader.GetString(reader.GetOrdinal("BlogUrl")),
                                 }
                             };
+                        }
 
-                            if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
+                        if (!reader.IsDBNull(reader.GetOrdinal("TagId")))
+                        {
+                            post.Tags.Add(new Tag()
                             {
-                                post.Tags.Add(new Tag()
-                                {
-                                    Id = reader.GetInt32(reader.GetOrdinal("TagId")),
-                                    Name = reader.GetString(reader.GetOrdinal("Name")),
-                                });
-                            }
+                                Id = reader.GetInt32(reader.GetOrdinal("TagId")),
+                                Name = reader.GetString(reader.GetOrdinal("Name")),
+                            });
                         }
                     }
-                    
+
                     reader.Close();
 
                     return post;
