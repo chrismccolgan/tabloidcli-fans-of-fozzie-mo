@@ -8,6 +8,8 @@ namespace TabloidCLI
         static void Main(string[] args)
         {
 
+            Console.BackgroundColor = ConsoleColor.Red;
+
             Console.WriteLine(@"HI THERE!!! WAKA WAKA");
             Console.WriteLine(@"
                                   _(___)_  
