@@ -117,7 +117,9 @@ namespace TabloidCLI.UserInterfaceManagers
 
            while (blog.Title == "" || blog.Url == "")
             {
+                Console.WriteLine("--------------------");
                 Console.WriteLine("You cannot leave any entry blank");
+                Console.WriteLine("--------------------");
                 Console.Write("Title: ");
                 blog.Title = Console.ReadLine();
 
@@ -164,7 +166,7 @@ namespace TabloidCLI.UserInterfaceManagers
                 {
                     _blogRepository.Delete(blogToDelete.Id);
                 }
-            
+          
         }
     }
 }

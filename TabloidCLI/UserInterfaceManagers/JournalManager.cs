@@ -55,7 +55,7 @@ namespace TabloidCLI.UserInterfaceManagers
             List<Journal> journals = _journalRepository.GetAll();
             foreach (Journal journal in journals)
             {
-                Console.WriteLine($"{journal.Title}: {journal.Content}");
+                Console.WriteLine($"Entered on: {journal.CreateDateTime} \n {journal.Title}: {journal.Content}");
                 
             }
         }
@@ -72,6 +72,18 @@ namespace TabloidCLI.UserInterfaceManagers
             journal.Content = Console.ReadLine();
 
             journal.CreateDateTime = DateTime.Now;
+
+            while (journal.Title == "" || journal.Content == "")
+            {
+                Console.WriteLine("--------------------");
+                Console.WriteLine("***You cannot leave any entry blank***");
+                Console.WriteLine("--------------------");
+                Console.WriteLine("What's the title of this entry? ");
+                journal.Title = Console.ReadLine();
+
+                Console.Write("What do you have to say today? ");
+                journal.Content = Console.ReadLine();
+            }
 
             _journalRepository.Insert(journal);
         }
@@ -129,7 +141,6 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 journalToEdit.Content = content;
             }
-
 
             _journalRepository.Update(journalToEdit);
         }
