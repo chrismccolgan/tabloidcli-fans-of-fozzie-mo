@@ -113,29 +113,19 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine($"Which tag would you like to remove from {author.FullName}?");
             List<Tag> tags = author.Tags;
 
-           
             for (int i = 0; i < tags.Count; i++)
             {
                 Tag tag = tags[i];
                 Console.WriteLine($" {i + 1}) {tag.Name}");
             }
             Console.Write("> ");
-<<<<<<< HEAD
-
-=======
->>>>>>> c219628b6e54ca7c62ce3f9feb6a5a4c6722e813
             if (tags.Count == 0)
             {
                 Console.WriteLine("No tags to remove");
                 Execute();
-<<<<<<< HEAD
-            }
-            else
-=======
 
             }
-            else 
->>>>>>> c219628b6e54ca7c62ce3f9feb6a5a4c6722e813
+            else
             {
                 string input = Console.ReadLine();
                 try
@@ -148,13 +138,8 @@ namespace TabloidCLI.UserInterfaceManagers
                 {
                     Console.WriteLine("Invalid Selection. Won't remove any tags.");
                 }
-<<<<<<< HEAD
-=======
-
->>>>>>> c219628b6e54ca7c62ce3f9feb6a5a4c6722e813
             }
 
-           
         }
     }
 }
