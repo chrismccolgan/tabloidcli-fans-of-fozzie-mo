@@ -103,18 +103,22 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Add()
         {
-            Console.WriteLine("New Author");
             Author author = new Author();
+            do
+            {
+                Console.WriteLine("New Author");
 
-            Console.Write("First Name: ");
-            author.FirstName = Console.ReadLine();
+                Console.Write("First Name: ");
+                author.FirstName = Console.ReadLine();
 
-            Console.Write("Last Name: ");
-            author.LastName = Console.ReadLine();
+                Console.Write("Last Name: ");
+                author.LastName = Console.ReadLine();
 
-            Console.Write("Bio: ");
-            author.Bio = Console.ReadLine();
-
+                Console.Write("Bio: ");
+                author.Bio = Console.ReadLine();
+            }
+            while (author.FirstName == "" || author.LastName == "" || author.Bio == "");
+           
             _authorRepository.Insert(author);
         }
 
@@ -127,19 +131,19 @@ namespace TabloidCLI.UserInterfaceManagers
             }
 
             Console.WriteLine();
-            Console.Write("New first name (blank to leave unchanged: ");
+            Console.Write("New first name (blank to leave unchanged): ");
             string firstName = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(firstName))
             {
                 authorToEdit.FirstName = firstName;
             }
-            Console.Write("New last name (blank to leave unchanged: ");
+            Console.Write("New last name (blank to leave unchanged): ");
             string lastName = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(lastName))
             {
                 authorToEdit.LastName = lastName;
             }
-            Console.Write("New bio (blank to leave unchanged: ");
+            Console.Write("New bio (blank to leave unchanged): ");
             string bio = Console.ReadLine();
             if (!string.IsNullOrWhiteSpace(bio))
             {
