@@ -55,24 +55,30 @@ namespace TabloidCLI.UserInterfaceManagers
             List<Journal> journals = _journalRepository.GetAll();
             foreach (Journal journal in journals)
             {
-                Console.WriteLine($"{journal.Title}: {journal.Content}");
+                Console.WriteLine($"Entered on: {journal.CreateDateTime} \n {journal.Title}: {journal.Content}");
                 
             }
         }
 
         private void Add()
         {
-            Console.WriteLine("New Journal Entry");
+            
             Journal journal = new Journal();
 
-            Console.WriteLine("What's the title of this entry? ");
-            journal.Title = Console.ReadLine();
+          do
+            {
+                Console.WriteLine("-------------------");
+                Console.WriteLine("***New Journal Entry***");
+                Console.WriteLine("What's the title of this entry? ");
+                journal.Title = Console.ReadLine();
 
-            Console.Write("What do you have to say today? ");
-            journal.Content = Console.ReadLine();
-
+                Console.Write("What do you have to say today? ");
+                journal.Content = Console.ReadLine();
+            }
+            while (journal.Title == "" || journal.Content == "") ;
+            
             journal.CreateDateTime = DateTime.Now;
-
+            
             _journalRepository.Insert(journal);
         }
 
@@ -129,7 +135,6 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 journalToEdit.Content = content;
             }
-
 
             _journalRepository.Update(journalToEdit);
         }
