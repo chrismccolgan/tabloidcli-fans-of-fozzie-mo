@@ -14,17 +14,20 @@ namespace TabloidCLI.UserInterfaceManagers
         }
         public IUserInterfaceManager Execute()
         {
-            Console.WriteLine("HI THERE! Let's pick a color! What's your favorite color?");
+            Console.Clear();
+            Console.WriteLine("");
+            Console.WriteLine("HI THERE! Let's pick a color! What's your favorite color? Just hit enter when you're done or if you like things just the way they are.");
             Console.WriteLine(" 1) Red");
             Console.WriteLine(" 2) Green");
             Console.WriteLine(" 3) Yellow");
-            Console.WriteLine(" 4) White");
+            Console.WriteLine(" 4) None of them!");
             Console.WriteLine(" 5) Dark Grey");
             Console.WriteLine(" 6) Blue");
             Console.WriteLine(" 7) Cyan");
-            Console.WriteLine(" 8) Dark Cyan");
-            Console.WriteLine(" 9) Dark Magenta");
+            Console.WriteLine(" 8) Dark Magenta");
+            Console.WriteLine(" 9) All of them!");
             Console.WriteLine(" 0) Get me out of here");
+            Console.WriteLine(" 'Enter/Return' ) to continue.  I've got some more questions for you.  But don't worry, they're not hard.");
 
             Console.Write("> ");
             string choice = Console.ReadLine();
@@ -53,26 +56,32 @@ namespace TabloidCLI.UserInterfaceManagers
                     Console.BackgroundColor = ConsoleColor.Cyan;
                     return this;
                 case "8":
-                    Console.BackgroundColor = ConsoleColor.DarkCyan;
-                    return this;
-                case "9":
                     Console.BackgroundColor = ConsoleColor.DarkMagenta;
                     return this;
+                case "9":
+                    Console.BackgroundColor = ConsoleColor.Black;
+                    return this;
                 case "0":
+                    Console.Clear();
                     return _parentUI;
           
                 default:
+                    Console.Clear();
+                    Console.WriteLine("");
+                    Console.WriteLine("That's my favorite color too!");
                     Console.WriteLine("What's your second favorite color?");
+                    Console.WriteLine("");
 
                     Console.WriteLine(" 1) Red");
                     Console.WriteLine(" 2) Green");
                     Console.WriteLine(" 3) Yellow");
-                    Console.WriteLine(" 4) White");
+                    Console.WriteLine(" 4) None of them!");
                     Console.WriteLine(" 5) Dark Grey");
                     Console.WriteLine(" 6) Blue");
                     Console.WriteLine(" 7) Cyan");
-                    Console.WriteLine(" 8) Dark Cyan");
-                    Console.WriteLine(" 9) Dark Magenta");
+                    Console.WriteLine(" 8) Dark MAgenta");
+                    Console.WriteLine(" 9) All of Them!");
+                    Console.WriteLine(" 'Enter/Return') to go back to choosing your favorite color.");
                     Console.WriteLine(" 0) Get me out of here");
 
                     Console.Write("> ");
@@ -101,12 +110,13 @@ namespace TabloidCLI.UserInterfaceManagers
                             Console.ForegroundColor = ConsoleColor.Cyan;
                             return this;
                         case "8":
-                            Console.ForegroundColor = ConsoleColor.DarkCyan;
-                            return this;
-                        case "9":
                             Console.ForegroundColor = ConsoleColor.DarkMagenta;
                             return this;
+                        case "9":
+                            Console.ForegroundColor = ConsoleColor.Black;
+                            return this;
                         case "0":
+                            Console.Clear();
                             return _parentUI;
                     }
 

@@ -32,6 +32,7 @@ namespace TabloidCLI.UserInterfaceManagers
                 case "6": return new SearchManager(this, CONNECTION_STRING);
                 case "7": return new ColorChoice(this);
                 case "0":
+
                     Console.WriteLine("Good bye");
                     return null;
                 default:
