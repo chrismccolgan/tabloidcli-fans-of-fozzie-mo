@@ -125,6 +125,7 @@ namespace TabloidCLI.UserInterfaceManagers
             if (tagToDelete != null)
             {
                 _tagRepository.Delete(tagToDelete.Id);
+
             }
         }
     }
