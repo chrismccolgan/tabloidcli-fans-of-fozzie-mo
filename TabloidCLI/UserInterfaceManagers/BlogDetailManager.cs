@@ -37,18 +37,23 @@ namespace TabloidCLI.UserInterfaceManagers
             switch (choice)
             {
                 case "1":
+                    Console.Clear();
                     View();
                     return this;
                 case "2":
+                    Console.Clear();
                     ViewBlogPosts();
                     return this;
                 case "3":
+                    Console.Clear();
                     AddTag();
                     return this;
                 case "4":
+                    Console.Clear();
                     RemoveTag();
                     return this;
                 case "0":
+                    Console.Clear();
                     return _parentUI;
                 default:
                     Console.WriteLine("Invalid Selection");

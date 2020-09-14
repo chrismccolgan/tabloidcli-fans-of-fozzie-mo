@@ -19,6 +19,10 @@ namespace TabloidCLI.UserInterfaceManagers
         }
         public IUserInterfaceManager Execute()
         {
+            Console.WriteLine("");
+            Console.WriteLine("-----------------");
+            Console.WriteLine("");
+
             Console.WriteLine("Journal Menu");
             Console.WriteLine(" 1) List Journal Entries");
             Console.WriteLine(" 2) Add Journal Entry");
@@ -31,18 +35,23 @@ namespace TabloidCLI.UserInterfaceManagers
             switch (choice)
             {
                 case "1":
+                    Console.Clear();
                     List();
                     return this;
                 case "2":
+                    Console.Clear();
                     Add();
                     return this;
                 case "3":
+                    Console.Clear();
                     Edit();
                     return this;
                 case "4":
+                    Console.Clear();
                     Remove();
                     return this;
                 case "0":
+                    Console.Clear();
                     return _parentUI;
                 default:
                     Console.WriteLine("Invalid Selection");
