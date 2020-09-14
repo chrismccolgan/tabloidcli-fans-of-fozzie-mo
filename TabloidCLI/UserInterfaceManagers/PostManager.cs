@@ -199,25 +199,20 @@ namespace TabloidCLI.UserInterfaceManagers
             string strdate = Console.ReadLine();
             DateTime parsedDateTime;
             
-                while (DateTime.TryParse(strdate, out parsedDateTime) == false)
-                {
-                    try
-                    {
-                        Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
-                        strdate = Console.ReadLine();
-                    }
-                    catch
-                    {
-                        Console.WriteLine("Date format error. Please try again");
-                        Execute();
-                    }
-                   
-                }
-                post.PublishDateTime = parsedDateTime;
-            
-           
-           
+            while (DateTime.TryParse(strdate, out parsedDateTime) == false)
+            {
+                         
+            Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
+            strdate = Console.ReadLine();
+               
+            }
 
+         
+                post.PublishDateTime = parsedDateTime;
+           
+               
+            
+             
             Author newauthor = ChooseAuthor();
             while (newauthor == null)
             {
@@ -237,7 +232,16 @@ namespace TabloidCLI.UserInterfaceManagers
             post.Author = newauthor;
             post.Blog = newblog;
 
-            _postRepository.Insert(post);
+            try
+            {
+                _postRepository.Insert(post);
+            }
+            catch
+            {
+                Console.WriteLine("***Your date format was invalid. Please try again.***");
+                Execute();
+            }
+            
             Console.WriteLine($"{post.Title} has been added.");
         }
 
