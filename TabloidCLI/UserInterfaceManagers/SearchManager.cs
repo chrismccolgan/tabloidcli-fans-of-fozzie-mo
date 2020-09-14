@@ -28,18 +28,23 @@ namespace TabloidCLI.UserInterfaceManagers
             switch (choice)
             {
                 case "1":
+                    Console.Clear();
                     SearchBlogs();
                     return this;
                 case "2":
+                    Console.Clear();
                     SearchAuthors();
                     return this;
                 case "3":
+                    Console.Clear();
                     SearchPosts();
                     return this;
                 case "4":
+                    Console.Clear();
                     SearchAll();
                     return this;
                 case "0":
+                    Console.Clear();
                     return _parentUI;
                 default:
                     Console.WriteLine("Invalid Selection");
