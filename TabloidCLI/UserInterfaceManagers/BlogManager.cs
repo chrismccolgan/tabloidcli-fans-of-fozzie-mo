@@ -32,18 +32,23 @@ namespace TabloidCLI.UserInterfaceManagers
             switch (choice)
             {
                 case "1":
+                    Console.Clear();
                     List();
                     return this;
                 case "2":
+                    Console.Clear();
                     Add();
                     return this;
                 case "3":
+                    Console.Clear();
                     Edit();
                     return this;
                 case "4":
+                    Console.Clear();
                     Remove();
                     return this;
                 case "5":
+                    Console.Clear();
                     Blog blog = Choose();
                     if (blog == null)
                     {
@@ -54,6 +59,7 @@ namespace TabloidCLI.UserInterfaceManagers
                         return new BlogDetailManager(this, _connectionString, blog.Id);
                     }
                 case "0":
+                    Console.Clear();
                     return _parentUI;
                 default:
                     Console.WriteLine("Invalid Selection");
