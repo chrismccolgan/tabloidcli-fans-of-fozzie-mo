@@ -9,7 +9,17 @@ namespace TabloidCLI.UserInterfaceManagers
 
         public IUserInterfaceManager Execute()
         {
-            Console.WriteLine("Main Menu");
+            Console.WriteLine(@"
+                                  _(___)_  
+                                 ()'   `() 
+                                 .' o o `. 
+                                 :  _O_  : 
+                                 `. \_/ .' --- Hi there! I'm Fozzie!
+                                  .`---'.     --- I hope your experience is a pleasant one!
+                                .' ()o() `.
+                                :   ( \   : ");
+            Console.WriteLine("");
+            Console.WriteLine(" Main Menu");
 
             Console.WriteLine(" 1) Journal Management");
             Console.WriteLine(" 2) Blog Management");
