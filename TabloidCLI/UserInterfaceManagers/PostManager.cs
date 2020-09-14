@@ -187,7 +187,22 @@ namespace TabloidCLI.UserInterfaceManagers
             
             post.Title = Console.ReadLine();
 
-           
+            while (post.Title == "")
+            {
+                Console.Write("Please enter an URL: ");
+                Console.WriteLine("***You must input a title***"); post.Url = Console.ReadLine();
+                Console.WriteLine("What's the title of this post? "); while (post.Url == "")
+                    post.Title = Console.ReadLine();
+            }
+
+            while (post.Title.Length > 55)
+            {
+                Console.WriteLine("***You cannot exceed 55 characters for the title. Please shorten your title***");
+                Console.WriteLine("What's the title of this post? ");
+                post.Title = Console.ReadLine();
+            }
+
+
             Console.Write("Please enter an URL: ");
                 post.Url = Console.ReadLine();
                 while (post.Url == "")
