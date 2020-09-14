@@ -1,5 +1,5 @@
-﻿using TabloidCLI.UserInterfaceManagers;
-using System;
+﻿using System;
+using TabloidCLI.UserInterfaceManagers;
 
 namespace TabloidCLI
 {
@@ -7,7 +7,6 @@ namespace TabloidCLI
     {
         static void Main(string[] args)
         {
-            
 
             Console.WriteLine(@"HI THERE!!! WAKA WAKA");
             Console.WriteLine(@"
@@ -22,13 +21,14 @@ namespace TabloidCLI
             Console.WriteLine("");
 
             Console.WriteLine("Welcome to Tabloid.ly by Team Fans of Fozzie. Waka waka!");
+
             // MainMenuManager implements the IUserInterfaceManager interface
             IUserInterfaceManager ui = new MainMenuManager();
             while (ui != null)
             {
                 // Each call to Execute will return the next IUserInterfaceManager we should execute
                 // When it returns null, we should exit the program;
-                ui = ui.Execute(); 
+                ui = ui.Execute();
             }
         }
     }
