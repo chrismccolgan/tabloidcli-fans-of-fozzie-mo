@@ -129,16 +129,16 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.Write("Title of this blog: ");
             blog.Title = Console.ReadLine();
             
-            while (blog.Title == "")
-            {
-                Console.WriteLine("***You must input a title***");
-                Console.WriteLine("Title of this blog? ");
-                blog.Title = Console.ReadLine();
-            }
+            //while (blog.Title == "")
+            //{
+            //    Console.WriteLine("***You must input a title***");
+            //    Console.WriteLine("Title of this blog? ");
+            //    blog.Title = Console.ReadLine();
+            //}
 
-            while (blog.Title.Length > 55)
+            while (blog.Title.Length > 55 || blog.Title.Length <= 0)
             {
-                Console.WriteLine("***You cannot exceed 55 characters for the title. Please shorten your title***");
+                Console.WriteLine("***Invalid title format. You cannot leave this blank and you must input a title that is less than 55 characters.***");
                 Console.WriteLine("What's the title of this entry? ");
                 blog.Title = Console.ReadLine();
             }

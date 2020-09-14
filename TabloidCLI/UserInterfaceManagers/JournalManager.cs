@@ -78,16 +78,9 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine("***New Journal Entry***");
             Console.WriteLine("What's the title of this entry? ");
             journal.Title = Console.ReadLine();
-            while (journal.Title == "")
+            while (journal.Title.Length > 55 || journal.Title.Length <= 0)
             {
-                Console.WriteLine("***You must input a title***");
-                Console.WriteLine("What's the title of this entry?");
-                journal.Title = Console.ReadLine();
-            }
-
-            while (journal.Title.Length > 55)
-            {
-                Console.WriteLine("***You cannot exceed 55 characters for the title. Please shorten your title***");
+                Console.WriteLine("***Invalid title format. You cannot leave this blank and you must input a title that is less than 55 characters.***");
                 Console.WriteLine("What's the title of this entry? ");
                 journal.Title = Console.ReadLine();
             }
