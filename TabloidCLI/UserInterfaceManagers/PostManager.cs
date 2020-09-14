@@ -183,19 +183,42 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.Write("Title: ");
             post.Title = Console.ReadLine();
 
+            while (post.Title == "")
+            {
+                Console.WriteLine("***You must input a title***");
+                Console.WriteLine("What's the title of this post? ");
+                post.Title = Console.ReadLine();
+            }
+
+            while (post.Title.Length > 55)
+            {
+                Console.WriteLine("***You cannot exceed 55 characters for the title. Please shorten your title***");
+                Console.WriteLine("What's the title of this post? ");
+                post.Title = Console.ReadLine();
+            }
+
+
             Console.Write("URL: ");
             post.Url = Console.ReadLine();
 
             Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
             string strdate = Console.ReadLine();
             DateTime parsedDateTime;
+            
             while (DateTime.TryParse(strdate, out parsedDateTime) == false)
             {
-                Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
-                strdate = Console.ReadLine();
+                         
+            Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
+            strdate = Console.ReadLine();
+               
             }
-            post.PublishDateTime = parsedDateTime;
 
+         
+                post.PublishDateTime = parsedDateTime;
+           
+               
+            
+             
             Author newauthor = ChooseAuthor();
             while (newauthor == null)
             {
@@ -215,7 +238,16 @@ namespace TabloidCLI.UserInterfaceManagers
             post.Author = newauthor;
             post.Blog = newblog;
 
-            _postRepository.Insert(post);
+            try
+            {
+                _postRepository.Insert(post);
+            }
+            catch
+            {
+                Console.WriteLine("***Your date format was invalid. Please try again.***");
+                Execute();
+            }
+            
             Console.WriteLine($"{post.Title} has been added.");
         }
 
@@ -232,6 +264,14 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine();
             Console.Write("New title (blank to leave unchanged) ");
             string title = Console.ReadLine();
+
+            while (title.Length > 55)
+            {
+                Console.WriteLine("***Your Title cannot exceed 55 characters. Please try again.***");
+                Console.Write("New Title (blank to leave unchanged): ");
+                title = Console.ReadLine();
+            }
+
             if (!string.IsNullOrWhiteSpace(title))
             {
                 postToEdit.Title = title;
