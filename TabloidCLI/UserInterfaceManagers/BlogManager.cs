@@ -119,16 +119,33 @@ namespace TabloidCLI.UserInterfaceManagers
             //instanstiate new blog class;
             Blog blog = new Blog();
 
-            do
+            Console.WriteLine("***New Blog***");
+            Console.Write("Title of this blog: ");
+            blog.Title = Console.ReadLine();
+            
+            while (blog.Title == "")
             {
-                Console.WriteLine("New Blog");
-                Console.Write("Title: ");
+                Console.WriteLine("***You must input a title***");
+                Console.WriteLine("Title of this blog? ");
                 blog.Title = Console.ReadLine();
+            }
 
+            while (blog.Title.Length > 55)
+            {
+                Console.WriteLine("***You cannot exceed 55 characters for the title. Please shorten your title***");
+                Console.WriteLine("What's the title of this entry? ");
+                blog.Title = Console.ReadLine();
+            }
+
+            Console.Write("Url: ");
+            blog.Url = Console.ReadLine();
+
+            while (blog.Url == "")
+            {
+                Console.WriteLine("You must input an URL");
                 Console.Write("Url: ");
                 blog.Url = Console.ReadLine();
             }
-            while (blog.Title == "" || blog.Url == "");
 
                 _blogRepository.Insert(blog);
 
@@ -147,6 +164,12 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine();
             Console.Write("New Title (blank to leave unchanged): ");
             string title = Console.ReadLine();
+            while (title.Length > 55)
+            {
+                Console.WriteLine("***Your Title cannot exceed 55 characters. Please try again.***");
+                Console.Write("New Title (blank to leave unchanged): ");
+                title = Console.ReadLine();
+            }
             if (!string.IsNullOrWhiteSpace(title))
             {
                 blogToEdit.Title = title;
