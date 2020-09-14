@@ -177,18 +177,46 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.Write("Title: ");
             post.Title = Console.ReadLine();
 
+            while (post.Title == "")
+            {
+                Console.WriteLine("***You must input a title***");
+                Console.WriteLine("What's the title of this post? ");
+                post.Title = Console.ReadLine();
+            }
+
+            while (post.Title.Length > 55)
+            {
+                Console.WriteLine("***You cannot exceed 55 characters for the title. Please shorten your title***");
+                Console.WriteLine("What's the title of this post? ");
+                post.Title = Console.ReadLine();
+            }
+
+
             Console.Write("URL: ");
             post.Url = Console.ReadLine();
 
             Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
             string strdate = Console.ReadLine();
             DateTime parsedDateTime;
-            while (DateTime.TryParse(strdate, out parsedDateTime) == false)
-            {
-                Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
-                strdate = Console.ReadLine();
-            }
-            post.PublishDateTime = parsedDateTime;
+            
+                while (DateTime.TryParse(strdate, out parsedDateTime) == false)
+                {
+                    try
+                    {
+                        Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
+                        strdate = Console.ReadLine();
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Date format error. Please try again");
+                        Execute();
+                    }
+                   
+                }
+                post.PublishDateTime = parsedDateTime;
+            
+           
+           
 
             Author newauthor = ChooseAuthor();
             while (newauthor == null)
