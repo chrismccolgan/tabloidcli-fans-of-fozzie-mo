@@ -265,9 +265,17 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 postToEdit.Blog = blog;
             }
-
-            _postRepository.Update(postToEdit);
-            Console.WriteLine($"{postToEdit.Title} was edited.");
+            try
+            {
+                _postRepository.Update(postToEdit);
+                Console.WriteLine($"{postToEdit.Title} was edited.");
+            }
+            catch
+            {
+                Console.WriteLine("***Your date format was invalid. Please try again.***");
+                Execute();
+            }
+            
         }
 
         private void Remove()
