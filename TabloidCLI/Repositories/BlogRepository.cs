@@ -20,7 +20,10 @@ namespace TabloidCLI
                     cmd.CommandText = @"SELECT Id,
                                                Title,
                                                URL
-                                          FROM Blog";
+                                          FROM Blog
+                                          Where FlagDelete = 0";
+                                
+
 
                     List<Blog> blogs = new List<Blog>();
 
@@ -140,7 +143,9 @@ namespace TabloidCLI
                 conn.Open();
                 using (SqlCommand cmd = conn.CreateCommand())
                 {
-                    cmd.CommandText = @"DELETE FROM Blog WHERE id = @id";
+                    cmd.CommandText = @"Update Blog
+                                        SET FlagDelete = 1
+                                         WHERE id = @id";
                     cmd.Parameters.AddWithValue("@id", id);
 
                     cmd.ExecuteNonQuery();
