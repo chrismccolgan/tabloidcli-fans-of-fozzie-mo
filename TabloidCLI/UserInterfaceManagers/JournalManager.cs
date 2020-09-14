@@ -62,26 +62,41 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Add()
         {
-            
+
             Journal journal = new Journal();
 
-          do
+            Console.WriteLine("-------------------");
+            Console.WriteLine("***New Journal Entry***");
+            Console.WriteLine("What's the title of this entry? ");
+            journal.Title = Console.ReadLine();
+            while (journal.Title == "")
             {
-                Console.WriteLine("-------------------");
-                Console.WriteLine("***New Journal Entry***");
+                Console.WriteLine("***You must input a title***");
+                Console.WriteLine("What's the title of this entry?");
+                journal.Title = Console.ReadLine();
+            }
+
+            while (journal.Title.Length > 55)
+            {
+                Console.WriteLine("***You cannot exceed 55 characters for the title. Please shorten your title***");
                 Console.WriteLine("What's the title of this entry? ");
                 journal.Title = Console.ReadLine();
+            }
 
+            Console.Write("What do you have to say today? ");
+            journal.Content = Console.ReadLine();
+
+            while (journal.Content == "")
+            {
+                Console.WriteLine("You must input content");
                 Console.Write("What do you have to say today? ");
                 journal.Content = Console.ReadLine();
             }
-            while (journal.Title == "" || journal.Content == "") ;
-            
+
             journal.CreateDateTime = DateTime.Now;
             
             _journalRepository.Insert(journal);
         }
-
 
         private Journal Choose(string prompt = null)
         {
