@@ -140,6 +140,14 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine();
             Console.Write("New Title (blank to leave unchanged): ");
             string title = Console.ReadLine();
+
+            while (title.Length > 55)
+            {
+                Console.WriteLine("***Your Title cannot exceed 55 characters. Please try again.***");
+                Console.Write("New Title (blank to leave unchanged): ");
+                title = Console.ReadLine();
+            }
+
             if (!string.IsNullOrWhiteSpace(title))
             {
                 journalToEdit.Title = title;
