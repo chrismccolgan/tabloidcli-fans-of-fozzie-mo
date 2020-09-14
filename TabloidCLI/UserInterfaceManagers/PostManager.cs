@@ -177,17 +177,22 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Add()
         {
+            Console.WriteLine("-----------------------");
             Console.WriteLine("New Post");
-            Post post = new Post();
 
-            Console.Write("Title: ");
+            
+            Post post = new Post();
+            
+            Console.Write("Please enter a Title: ");
+            
             post.Title = Console.ReadLine();
 
             while (post.Title == "")
             {
-                Console.WriteLine("***You must input a title***");
-                Console.WriteLine("What's the title of this post? ");
-                post.Title = Console.ReadLine();
+                Console.Write("Please enter an Title: ");
+                Console.WriteLine("***You must input a title***"); 
+                Console.WriteLine("What's the title of this post? "); 
+                    post.Title = Console.ReadLine();
             }
 
             while (post.Title.Length > 55)
@@ -197,28 +202,26 @@ namespace TabloidCLI.UserInterfaceManagers
                 post.Title = Console.ReadLine();
             }
 
-
-            Console.Write("URL: ");
-            post.Url = Console.ReadLine();
+            
+            Console.Write("Please enter an URL: ");
+                post.Url = Console.ReadLine();
+                while (post.Url == "")
+                {
+                Console.WriteLine("***You must input a URL***");
+                Console.Write("Please enter an URL: ");
+                post.Url = Console.ReadLine();
+                } 
 
             Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
             string strdate = Console.ReadLine();
             DateTime parsedDateTime;
-            
             while (DateTime.TryParse(strdate, out parsedDateTime) == false)
             {
-                         
-            Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
-            strdate = Console.ReadLine();
-               
+                Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
+                strdate = Console.ReadLine();
             }
+            post.PublishDateTime = parsedDateTime;
 
-         
-                post.PublishDateTime = parsedDateTime;
-           
-               
-            
-             
             Author newauthor = ChooseAuthor();
             while (newauthor == null)
             {
@@ -247,7 +250,6 @@ namespace TabloidCLI.UserInterfaceManagers
                 Console.WriteLine("***Your date format was invalid. Please try again.***");
                 Execute();
             }
-            
             Console.WriteLine($"{post.Title} has been added.");
         }
 
@@ -255,7 +257,7 @@ namespace TabloidCLI.UserInterfaceManagers
 
         private void Edit()
         {
-            Post postToEdit = Choose("Which post would you like to edit?");
+            Post postToEdit = Choose("Which post would you like to edit? (Enter a number.)");
             if (postToEdit == null)
             {
                 return;
@@ -264,14 +266,6 @@ namespace TabloidCLI.UserInterfaceManagers
             Console.WriteLine();
             Console.Write("New title (blank to leave unchanged) ");
             string title = Console.ReadLine();
-
-            while (title.Length > 55)
-            {
-                Console.WriteLine("***Your Title cannot exceed 55 characters. Please try again.***");
-                Console.Write("New Title (blank to leave unchanged): ");
-                title = Console.ReadLine();
-            }
-
             if (!string.IsNullOrWhiteSpace(title))
             {
                 postToEdit.Title = title;
@@ -282,52 +276,47 @@ namespace TabloidCLI.UserInterfaceManagers
             {
                 postToEdit.Url = url;
             }
-            Console.WriteLine("New publish date (YYYY-MM-DD)(blank to leave unchanged) ");
-            string date = Console.ReadLine();
-            if (!string.IsNullOrWhiteSpace(date))
+            Console.WriteLine("New publish date (MM/DD/YYYY)(blank to leave unchanged) ");
+            string strdate = Console.ReadLine();
+            DateTime parsedDateTime;
+
+            while (DateTime.TryParse(strdate, out parsedDateTime) == false)
             {
-                Nullable<DateTime> dateCheck = null;
-                while (dateCheck == null)
-                {
-                    try
-                    {
-                        try
-                        {
-                            postToEdit.PublishDateTime = DateTime.Parse(date);
-                        }
-                        catch
-                        {
-                            Console.Write("Please use the correct format YYYY-MM-DD");
-                            throw new System.Exception();
-                        }
-                    }
-                    catch
-                    {
-                        date = Console.ReadLine();
-                    }
-                    
-                }
-            }  
-            Console.Write("Choose new Author: ");
+                Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
+                strdate = Console.ReadLine();
+            }
+
+            postToEdit.PublishDateTime = parsedDateTime;
+
+          
+            Console.Write("Choose a new Author: ");
             Author author = ChooseAuthor();
             if (author != null)
             {
                 postToEdit.Author = author;
             }
-            Console.Write("Choose new Blog: ");
+            Console.Write("Choose a new Blog: ");
             Blog blog = ChooseBlog();
             if (blog != null)
             {
                 postToEdit.Blog = blog;
             }
-
-            _postRepository.Update(postToEdit);
-            Console.WriteLine($"{postToEdit.Title} was edited.");
+            try
+            {
+                _postRepository.Update(postToEdit);
+                Console.WriteLine($"{postToEdit.Title} was edited.");
+            }
+            catch
+            {
+                Console.WriteLine("***Your date format was invalid. Please try again.***");
+                Execute();
+            }
+            
         }
 
         private void Remove()
         {
-            Post postToDelete = Choose("Which post would you like to remove?");
+            Post postToDelete = Choose("Which post would you like to remove? (Enter a number)");
             if (postToDelete != null)
             {
                 _postRepository.Delete(postToDelete.Id);
