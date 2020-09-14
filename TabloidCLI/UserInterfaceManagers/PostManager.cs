@@ -187,8 +187,30 @@ namespace TabloidCLI.UserInterfaceManagers
             
             post.Title = Console.ReadLine();
 
+            while (post.Title == "")
+            {
+                Console.Write("Please enter an Title: ");
+                Console.WriteLine("***You must input a title***"); 
+                Console.WriteLine("What's the title of this post? "); 
+                    post.Title = Console.ReadLine();
+            }
+
+            while (post.Title.Length > 55)
+            {
+                Console.WriteLine("***You cannot exceed 55 characters for the title. Please shorten your title***");
+                Console.WriteLine("What's the title of this post? ");
+                post.Title = Console.ReadLine();
+            }
+
+            
             Console.Write("Please enter an URL: ");
-            post.Url = Console.ReadLine();
+                post.Url = Console.ReadLine();
+                while (post.Url == "")
+                {
+                Console.WriteLine("***You must input a URL***");
+                Console.Write("Please enter an URL: ");
+                post.Url = Console.ReadLine();
+                } 
 
             Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
             string strdate = Console.ReadLine();
@@ -219,7 +241,15 @@ namespace TabloidCLI.UserInterfaceManagers
             post.Author = newauthor;
             post.Blog = newblog;
 
-            _postRepository.Insert(post);
+            try
+            {
+                _postRepository.Insert(post);
+            }
+            catch
+            {
+                Console.WriteLine("***Your date format was invalid. Please try again.***");
+                Execute();
+            }
             Console.WriteLine($"{post.Title} has been added.");
         }
 
