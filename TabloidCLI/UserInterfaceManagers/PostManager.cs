@@ -181,8 +181,16 @@ namespace TabloidCLI.UserInterfaceManagers
             
             post.Title = Console.ReadLine();
 
+           
             Console.Write("Please enter an URL: ");
-            post.Url = Console.ReadLine();
+                post.Url = Console.ReadLine();
+                while (post.Url == "")
+
+                {
+                Console.WriteLine("***You must input a URL***");
+                Console.Write("Please enter an URL: ");
+                post.Url = Console.ReadLine();
+                } 
 
             Console.Write("DatePublished (Enter as MM/DD/YYYY): ");
             string strdate = Console.ReadLine();
